@@ -1,0 +1,60 @@
+const puppeteer = require("puppeteer");
+
+myResponse = []
+async function start(domainName) {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.goto("https://register.com.np/whois-lookup");
+
+  await page.type("#domainName", domainName),
+    await Promise.all([
+      await page.click(
+        "body > div.whois-lookup > div > div > div > div > form > div.row > div.col-md-2.col-sm-2.col-xs-12 > button"
+      ),
+      await page.waitForNavigation(),
+    ]);
+  console.log(page.url());
+
+  if (page.url() == "https://register.com.np/domainwhoisdetail") {
+    const domainname = await page.$eval(
+      "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(1) > td:nth-child(2) > strong",
+      (el) => el.textContent
+    );
+    const firstRegister = await page.$eval(
+        "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(2) > td:nth-child(2)",
+        (el) => el.textContent
+      );
+
+      const lastUpdated = await page.$eval(
+        "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(3) > td:nth-child(2)",
+        (el) => el.textContent
+      );
+      const primaryServer = await page.$eval(
+        "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(4) > td:nth-child(2)",
+        (el) => el.textContent
+      );
+      const secondaryServer = await page.$eval(
+        "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(5) > td:nth-child(2)",
+        (el) => el.textContent
+      );
+      const email = await page.$eval(
+        "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(6) > td:nth-child(2)",
+        (el) => el.textContent
+      );
+      const personName = await page.$eval(
+        "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(7) > td:nth-child(2)",
+        (el) => el.textContent
+      );
+      const address = await page.$eval(
+        "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(11) > td:nth-child(2)",
+        (el) => el.textContent
+      );
+      myResponse.push(domainname,firstRegister,lastUpdated,primaryServer,secondaryServer,email,personName,address);
+    console.log(domainname,firstRegister,lastUpdated,primaryServer,secondaryServer,email,personName,address);
+  } else {
+    console.log("dont exist");
+  }
+  await browser.close();
+}
+
+module.exports = { start,myResponse };
