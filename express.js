@@ -46,9 +46,9 @@ console.log(req.body)
     })
 // }
 }
-catch(error){
-res.send(error + " dasdasdasda")
-}
+// catch(error){
+// res.send(error + " dasdasdasda")
+// }
 
 
 });
