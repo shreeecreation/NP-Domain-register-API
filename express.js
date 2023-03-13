@@ -19,7 +19,6 @@ app.get('/sas',(req,res)=>{
 
 
 app.post('/post',async (req,res)=>{
-res.send("running")
     try{
 
         await start(req.body.domain);
