@@ -60,5 +60,3 @@ export async function start(domainName) {
   }
   await browser.close();
 }
-
-export default {myResponse,start}
