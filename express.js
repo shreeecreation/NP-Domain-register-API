@@ -1,7 +1,6 @@
 import { start, myResponse } from './index.js';
-
-
 import express from "express";
+
 const app = express();
 
 app.use(express.json())
@@ -30,6 +29,8 @@ app.post('/post',async (req,res)=>{
             "domainName" : "didnt exist"
         })
     }
+    else{
+        
     res.send({
         "domainName" : myResponse[0],
         "firstRegister" : myResponse[1],
@@ -40,4 +41,6 @@ app.post('/post',async (req,res)=>{
         "personName" : myResponse[6],
         "address" : myResponse[7],
     })
+}
+
 });

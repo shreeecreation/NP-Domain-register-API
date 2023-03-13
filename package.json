@@ -2,12 +2,12 @@
   "name": "npapi",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js","type":"module",
+  "main": "express.js","type":"module",
   "engines" : {
     "node" : "14.x"
   },
   "scripts": {
-    "start" : "node ./src/express.js",
+    "start" : "node ./express.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
