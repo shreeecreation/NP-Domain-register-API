@@ -4,6 +4,7 @@ import puppeteer from "puppeteer";
 export let  myResponse = [""]
 
 export async function start(domainName) {
+  myResponse = [""];
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://register.com.np/whois-lookup");

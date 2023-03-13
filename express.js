@@ -19,10 +19,7 @@ app.get('/sas',(req,res)=>{
 
 
 app.post('/post',async (req,res)=>{
-    console.log(JSON.stringify(req.body, null, 2));
-    console.log(req.body.domain)
     await start(req.body.domain);
-    console.log(myResponse);
     
     if(myResponse.length == 1){
         res.send({
