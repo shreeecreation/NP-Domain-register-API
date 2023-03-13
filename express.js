@@ -25,12 +25,12 @@ const domain = req.body.domain;
     try{
         const response  = await start(domain)
         if(response.length == 1){
-        res.send({
+        res.json({
             "domainName" : "didnt exist"
         })
     }
     else{
-    res.send({
+    res.json({
         "domainName" : myResponse[0],
         "firstRegister" : myResponse[1],
         "lastUpdated" : myResponse[2],
