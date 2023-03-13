@@ -1,7 +1,9 @@
-const puppeteer = require("puppeteer");
 
-myResponse = []
-async function start(domainName) {
+import puppeteer from "puppeteer";
+
+export let  myResponse = [""]
+
+export async function start(domainName) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://register.com.np/whois-lookup");
@@ -16,7 +18,8 @@ async function start(domainName) {
   console.log(page.url());
 
   if (page.url() == "https://register.com.np/domainwhoisdetail") {
-    const domainname = await page.$eval(
+  console.log("exist")  
+  const domainname = await page.$eval(
       "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(1) > td:nth-child(2) > strong",
       (el) => el.textContent
     );
@@ -57,4 +60,4 @@ async function start(domainName) {
   await browser.close();
 }
 
-module.exports = { start,myResponse };
+export default {myResponse,start}

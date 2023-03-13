@@ -1,5 +1,7 @@
-const { start, myResponse } = require('./index');
-const express = require('express');
+import { start, myResponse } from './index.js';
+
+
+import express from "express";
 const app = express();
 
 app.use(express.json())
@@ -12,6 +14,10 @@ app.get('/get',(req,res)=>{
     res.send("Hello 123")
 });
 
+app.get('/sas',(req,res)=>{
+    res.send("Hello sas")
+});
+
 
 app.post('/post',async (req,res)=>{
     console.log(JSON.stringify(req.body, null, 2));
@@ -19,6 +25,11 @@ app.post('/post',async (req,res)=>{
     await start(req.body.domain);
     console.log(myResponse);
     
+    if(myResponse.length == 1){
+        res.send({
+            "domainName" : "didnt exist"
+        })
+    }
     res.send({
         "domainName" : myResponse[0],
         "firstRegister" : myResponse[1],
