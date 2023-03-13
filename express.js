@@ -27,13 +27,13 @@ app.get('/sas',(req,res)=>{
 app.post('/post',async (req,res)=>{
 console.log(req.body)
     await start(req.body.domain);
-    try{
+    // try{
         if(myResponse.length == 1){
         res.send({
             "domainName" : "didnt exist"
         })
-    }
-    else{
+    // }
+    // else{
     res.send({
         "domainName" : myResponse[0],
         "firstRegister" : myResponse[1],
@@ -44,7 +44,7 @@ console.log(req.body)
         "personName" : myResponse[6],
         "address" : myResponse[7],
     })
-}
+// }
 }
 catch(error){
 res.send(error + " dasdasdasda")
