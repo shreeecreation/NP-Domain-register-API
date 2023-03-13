@@ -65,7 +65,7 @@ export async function start(domainName) {
 
     //pushing in the array for fetching later on    -------------------------------------------
     myResponse.push(domainname,firstRegister,lastUpdated,primaryServer,secondaryServer,email,personName,address);
-    console.log(domainname,firstRegister,lastUpdated,primaryServer,secondaryServer,email,personName,address);
+    return myResponse;
   } 
   
   else {
