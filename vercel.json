@@ -1,17 +1,19 @@
 {
-    "version" : 2,
-    "builds" : [{
-        "src" : "express.js",
-        "use" :"@vercel/node"
-    }],
-    "routes" : [
-        {
-            "src" : "/(.*)",
-            "dest" : "express.js"
-        },
-        {
-            "src": "(.*)/node_modules/puppeteer(.*)",
-            "use": "@vercel/static"
-          }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "express.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "(.*)/node_modules/puppeteer(.*)",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "express.js"
+    }
+  ]
 }
