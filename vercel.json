@@ -8,6 +8,10 @@
         {
             "src" : "/(.*)",
             "dest" : "express.js"
-        }
+        },
+        {
+            "src": "src/*",
+            "use": "@vercel/node"
+          }
     ]
 }

@@ -1,4 +1,4 @@
-import { start, myResponse } from './index.js';
+import { start, myResponse } from './src/index.js';
 import express from "express";
 
 const app = express();
@@ -19,7 +19,7 @@ app.get('/sas',(req,res)=>{
 
 
 app.post('/post',async (req,res)=>{
-
+res.send("running")
     try{
 
         await start(req.body.domain);
