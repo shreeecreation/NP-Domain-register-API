@@ -8,6 +8,10 @@
         {
             "src" : "/(.*)",
             "dest" : "express.js"
-        }
+        },
+        {
+            "src": "(.*)/node_modules/puppeteer(.*)",
+            "use": "@vercel/static"
+          }
     ]
 }
