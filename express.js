@@ -28,10 +28,10 @@ app.post('/post',async (req,res)=>{
 console.log(req.body)
     await start(req.body.domain);
     // try{
-        if(myResponse.length == 1){
-        res.send({
-            "domainName" : "didnt exist"
-        })
+        // if(myResponse.length == 1){
+        // res.send({
+        //     "domainName" : "didnt exist"
+        // })
     // }
     // else{
     res.send({
@@ -51,4 +51,4 @@ console.log(req.body)
 // }
 
 
-});
+);
