@@ -4,21 +4,28 @@ import puppeteer from "puppeteer";
 export let  myResponse = [""]
 
 export async function start(domainName) {
-
-  
   myResponse = [""];
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
+
+  // taveling to the desired page  ------------------------------------------
   await page.goto("https://register.com.np/whois-lookup");
 
+  //typing domainName in textfield of the site -------------------------------------------
   await page.type("#domainName", domainName),
     await Promise.all([
+  //clicking the search button in the site -------------------------------------------
+
       await page.click(
         "body > div.whois-lookup > div > div > div > div > form > div.row > div.col-md-2.col-sm-2.col-xs-12 > button"
       ),
+  //waiting for navigate to other page  -------------------------------------------
+
       await page.waitForNavigation(),
     ]);
   console.log(page.url());
+
+  //checking whether the domain is availbale or not   -------------------------------------------
 
   if (page.url() == "https://register.com.np/domainwhoisdetail") {
   console.log("exist")  
@@ -55,9 +62,13 @@ export async function start(domainName) {
         "body > div.contain-holder > div > div > div > div > div.whois-record > table > tbody > tr:nth-child(11) > td:nth-child(2)",
         (el) => el.textContent
       );
-      myResponse.push(domainname,firstRegister,lastUpdated,primaryServer,secondaryServer,email,personName,address);
+
+    //pushing in the array for fetching later on    -------------------------------------------
+    myResponse.push(domainname,firstRegister,lastUpdated,primaryServer,secondaryServer,email,personName,address);
     console.log(domainname,firstRegister,lastUpdated,primaryServer,secondaryServer,email,personName,address);
-  } else {
+  } 
+  
+  else {
     console.log("dont exist");
   }
   await browser.close();
