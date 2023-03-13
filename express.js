@@ -19,9 +19,9 @@ app.get('/sas',(req,res)=>{
 
 
 app.post('/post',async (req,res)=>{
+    await start(req.body.domain);
     try{
 
-        await start(req.body.domain);
         
         if(myResponse.length == 1){
         res.send({
